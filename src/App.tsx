@@ -4,7 +4,7 @@ import Autocomplete from './components/Autocomplete/Autocomplete'
 import './App.css'
 
 const App = () => {
-	const [data, setData] = useState(null)
+	const [data, setData] = useState([])
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -13,7 +13,7 @@ const App = () => {
 				const data = await resp.json()
 				setData(data)
 			} catch (error) {
-				console.log('Fetch error', error)
+				console.error('Fetch error', error)
 			}
 		}
 		fetchData()
