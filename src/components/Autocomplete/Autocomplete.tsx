@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
 
-const Autocomplete = ({ data }) => {
-	const [filteredData, setFilteredData] = useState<any>([])
-	const [noProducts, setNoProducts] = useState(false)
+type AutocompleteProps = {
+	data: {
+		brand: string
+		index: number
+		description: string
+	}[]
+}
 
-	const handleChange = e => {
+const Autocomplete = ({ data }: AutocompleteProps) => {
+	const [filteredData, setFilteredData] = useState<
+		{ brand: string; index: number; description: string }[]
+	>([])
+	const [noProducts, setNoProducts] = useState<boolean>(false)
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
 		const newFilteredData = data.filter(item =>
 			item.brand.toLowerCase().includes(inputValue.toLowerCase())
